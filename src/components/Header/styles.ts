@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   size?: 'small' | 'large';
 }
-
+interface NavItemLinkProps {
+  actualPage?: string;
+  activatedRoute: boolean;
+}
 export const Container = styled.div<ContainerProps>`
   background: #5636d3;
   padding: 30px 0;
@@ -33,4 +37,34 @@ export const Container = styled.div<ContainerProps>`
       }
     }
   }
+`;
+
+export const NavItemLink = styled.div<NavItemLinkProps>`
+  display: none;
+  ${(props: NavItemLinkProps) =>
+    props.actualPage === '/'
+      ? css`
+          position: absolute;
+          width: 73px;
+          height: 2px;
+          left: 1315px;
+          top: 69px;
+
+          background: #ff872c;
+        `
+      : css`
+          position: absolute;
+          width: 73px;
+          height: 2px;
+          left: 1420px;
+          top: 69px;
+
+          background: #ff872c;
+        `}
+  ${props =>
+    props.activatedRoute
+      ? css`
+          display: block;
+        `
+      : null}
 `;
